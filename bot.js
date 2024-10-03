@@ -46,7 +46,7 @@ bot.use(
 bot.use(i18n);
 
 bot.api.setMyCommands([
-	{ command: "start", description: "Menu" },
+	{ command: "start", description: "Начать работу с ботом" },
 	// { command: "language", description: "Choose your language"},
 ]);
 bot.use(hydrateReply);
