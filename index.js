@@ -9,7 +9,9 @@ const { GrammyError, HttpError } = require("grammy");
 const { questionHandler } = require("./handlers/questionsHandler");
 
 bot.command("start", (ctx) => startHandler(ctx));
-bot.command("language", (ctx) => languageHandler(ctx));
+// bot.command("language", (ctx) => languageHandler(ctx));
+
+bot.command('chat_id', (ctx) => ctx.reply(ctx.chat.id));
 
 bot.callbackQuery("toMenu", async (ctx) => {
 	toMainMenu(ctx);
