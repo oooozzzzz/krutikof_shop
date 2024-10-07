@@ -9,7 +9,7 @@ const handleNegativeReview = async (conversation, ctx) => {
 	const comment = reviewCtx.message?.text;
 	// await addComment({ id: ctx.from.id, comment, isPositive });
 	await ctx.api.deleteMessage(beginning.chat.id, beginning.message_id)
-	await ctx.api.sendMessage(762569950, `Негативный отзыв от @${reviewCtx.from.username}\n\n${comment}`, {reply_markup: generateAnswerKeyboard(reviewCtx.from.id)});
+	await ctx.api.sendMessage(-1002495927191, `Негативный отзыв от @${reviewCtx.from.username}\n\n${comment}`, {reply_markup: generateAnswerKeyboard(reviewCtx.from.id)});
 	await ctx.reply("Ваш отзыв передан администратору!", {
 		reply_markup: toMainMenuKeyboard(),
 	});
