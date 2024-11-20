@@ -15,6 +15,8 @@ const ownerMenu = new Menu("ownerMenu")
 		await ctx.conversation.enter("changeOwnerPassword");
 	})
 	.row()
-	.text("Закрыть", async (ctx) => {ctx.msg.delete()})
+	.text("Закрыть", async (ctx) => {
+		await ctx.msg.delete();
+	});
 
 module.exports = { ownerMenu };

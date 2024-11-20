@@ -1,5 +1,5 @@
 const { Menu } = require("@grammyjs/menu");
-const { catalogMenu, catalogItemsMenus } = require("./catalogMenu");
+const { catalogMenu, catalogItemsMenus, categoryItemsMenus } = require("./catalogMenu");
 const {
 	instructionsMenu,
 	instructionItemsMenus,
@@ -36,6 +36,7 @@ startMenu.register([
 	urlsMenu,
 	...catalogItemsMenus,
 	...instructionItemsMenus,
+	...categoryItemsMenus
 ]);
 
 module.exports = { startMenu };

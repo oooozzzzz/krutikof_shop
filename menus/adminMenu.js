@@ -7,7 +7,7 @@ const adminMenu = new Menu("adminMenu")
 	})
 	.row()
 	.text("Закрыть", async (ctx) => {
-		ctx.msg.delete();
+		await ctx.msg.delete();
 	});
 // .text("Добавить опрос", async (ctx) => {
 // 	ctx.msg.delete()

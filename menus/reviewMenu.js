@@ -5,16 +5,32 @@ const reviewsMenu = new Menu("reviewsMenu")
 	.dynamic(() => {
 		const range = new MenuRange();
 		for (let i = 1; i < 6; i++) {
-			range.text(i, async (ctx) => {
-				if (i <= 3) {
+			if (i <= 3) {
+				range.text(i, async (ctx) => {
 					await ctx.conversation.enter("handleNegativeReview");
-				} else {
-					ctx.msg.editCaption("Пожалуйста, оставьте отзыв на наш товар на Wildberries!")
-					ctx.menu.nav("urlsMenu");
-				}
-				// ctx.menu.nav(item.menu)
-				// await ctx.msg.editMedia(InputMediaBuilder.document(instructionsVideos[i].id, {caption: instructionsVideos[i].caption}));
-			});
+				});
+			} else {
+				range.text(i, async (ctx) => {
+					try {
+						ctx.menu.nav("catalogMenu");
+					} catch (error) {}
+					await ctx.msg.editCaption(
+						"Пожалуйста, оставьте отзыв на наш товар на Wildberries!"
+					);
+				});
+			}
+			// range.text(i, async (ctx) => {
+			// 	if (i <= 3) {
+			// 		await ctx.conversation.enter("handleNegativeReview");
+			// 	} else {
+			// 		ctx.msg.editCaption(
+			// 			"Пожалуйста, оставьте отзыв на наш товар на Wildberries!"
+			// 		);
+			// 		try {
+			// 			ctx.menu.nav("catalogMenu");
+			// 		} catch (error) {}
+			// 	}
+			// });
 		}
 		return range;
 	})
@@ -36,14 +52,13 @@ const urls = [
 	{ url: "https://www.google.ru/?hl=ru", name: "Товар 8" },
 ];
 
-const urlsMenu = new Menu("urlsMenu")
-.dynamic(() => {
+const urlsMenu = new Menu("urlsMenu").dynamic(() => {
 	const range = new MenuRange();
 	urls.forEach((item, i) => {
-    range.url(item.name, item.url);
+		range.url(item.name, item.url);
 		i % 2 != 0 ? range.row() : null;
-  });
-	return range
-})
+	});
+	return range;
+});
 
 module.exports = { reviewsMenu, urlsMenu };
