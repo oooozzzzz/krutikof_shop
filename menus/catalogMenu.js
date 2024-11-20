@@ -127,8 +127,12 @@ const catalogItemsMenus = goodsMenus.map((item) => {
 	}
 	menu.row().text("Назад", async (ctx) => {
 		ctx.menu.nav("catalogMenu");
-		await ctx.msg.editMedia(startPhoto);
-		ctx.msg.editCaption(ctx.t("catalog"));
+		await ctx.msg.editMedia(
+			InputMediaBuilder.photo(
+				"AgACAgIAAxkBAAM6Zvu5ionCDlaj3--pSpshy2GGsOsAAj_lMRu8AAHhS_VnbxKsKJj3AQADAgADcwADNgQ"
+			)
+		);
+		await ctx.msg.editCaption(ctx.t("catalog"));
 	});
 	return menu;
 });
@@ -348,8 +352,12 @@ const categoryItemsMenus = categoryMenus.map((item) => {
 	// }
 	menu.row().text("Назад", async (ctx) => {
 		ctx.menu.nav(item.back);
-		await ctx.msg.editMedia(startPhoto);
-		// ctx.msg.editCaption(ctx.t("catalog"));
+		await ctx.msg.editMedia(
+			InputMediaBuilder.photo(
+				"AgACAgIAAxkBAAM6Zvu5ionCDlaj3--pSpshy2GGsOsAAj_lMRu8AAHhS_VnbxKsKJj3AQADAgADcwADNgQ"
+			)
+		);
+		await ctx.msg.editCaption(ctx.t("catalog"));
 	});
 	return menu;
 });
