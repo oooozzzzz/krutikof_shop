@@ -193,7 +193,7 @@ const categoryMenus = [
 		],
 	},
 	{
-		name: "ny1",
+		name: "ny2",
 		back: "good3Menu",
 		items: [
 			{
@@ -215,7 +215,7 @@ const categoryMenus = [
 		],
 	},
 	{
-		name: "ny2",
+		name: "ny1",
 		back: "good3Menu",
 		items: [
 			{
