@@ -7,7 +7,7 @@ const askQuestion = async (conversation, ctx) => {
 		"Введите Ваш вопрос, я сразу же передам его администратору",
 		{
 			reply_markup: cancelKeyboard,
-		}
+		},
 	);
 	const questionCtx = await conversation.wait();
 	const question = questionCtx.message?.text;
@@ -18,9 +18,13 @@ const askQuestion = async (conversation, ctx) => {
 		});
 	}
 	// console.log(beginning)
-	await ctx.api.deleteMessage(beginning.chat.id, beginning.message_id)
-	await ctx.api.sendMessage(-1002495927191, `Вопрос от @${questionCtx.from.username}\n\n${question}`, {reply_markup: generateAnswerKeyboard(questionCtx.from.id)});
-	await ctx.reply("Ваш вопрос передан администратору!", {
+	await ctx.api.deleteMessage(beginning.chat.id, beginning.message_id);
+	await ctx.api.sendMessage(
+		-1002495927191,
+		`Вопрос от @${questionCtx.from.username}\n\n${question}`,
+		{ reply_markup: generateAnswerKeyboard(questionCtx.from.id) },
+	);
+	await ctx.reply("Ваш вопрос передан в службу заботы покупателей!", {
 		reply_markup: toMainMenuKeyboard(),
 	});
 };
