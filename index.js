@@ -34,7 +34,7 @@ bot.command("users", async (ctx) => {
 	const usersCount = await getUsersCount();
 	await ctx.reply(
 		`Всего пользователей: ${usersCount}\n\n${users
-			.map((user) => user.first_name)
+			.map((user) => user.tg_id)
 			.join(", ")}`,
 	);
 });
