@@ -7,11 +7,12 @@ const { toPref } = require("./services");
 const { votePollHandler } = require("./handlers/votePollHandler");
 const { GrammyError, HttpError } = require("grammy");
 const { questionHandler } = require("./handlers/questionsHandler");
+const { getAllUsers, getAllUsersInfo, getUsersCount } = require("./db");
 
 bot.command("start", (ctx) => startHandler(ctx));
 // bot.command("language", (ctx) => languageHandler(ctx));
 
-bot.command('chat_id', (ctx) => ctx.reply(ctx.chat.id));
+bot.command("chat_id", (ctx) => ctx.reply(ctx.chat.id));
 
 bot.callbackQuery("toMenu", async (ctx) => {
 	toMainMenu(ctx);
@@ -27,6 +28,15 @@ bot.callbackQuery("toOwnerMenu", async (ctx) => {
 });
 bot.callbackQuery("ok", async (ctx) => {
 	ctx.answerCallbackQuery();
+});
+bot.command("users", async (ctx) => {
+	const users = await getAllUsersInfo();
+	const usersCount = await getUsersCount();
+	await ctx.reply(
+		`Всего пользователей: ${usersCount}\n\n${users
+			.map((user) => user.first_name)
+			.join(", ")}`,
+	);
 });
 bot.callbackQuery("cancel", async (ctx) => {
 	try {
@@ -72,7 +82,7 @@ bot.callbackQuery(/-/, async (ctx) => {
 			} catch (error) {}
 			break;
 		case "question":
-			ctx.session.userId = preference
+			ctx.session.userId = preference;
 			await questionHandler(ctx);
 			break;
 		default:

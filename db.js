@@ -90,7 +90,25 @@ module.exports.getAdminPassword = async () => {
 		});
 		return password.value;
 	} catch (error) {
-		console.log(error)
+		console.log(error);
+		return false;
+	}
+};
+
+module.exports.getAllUsersInfo = async () => {
+	try {
+		const users = await prisma.user.findMany();
+		return users;
+	} catch (error) {
+		return false;
+	}
+};
+
+module.exports.getUsersCount = async () => {
+	try {
+		const users = await prisma.user.count();
+		return users;
+	} catch (error) {
 		return false;
 	}
 };
